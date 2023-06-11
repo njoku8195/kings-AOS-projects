@@ -1,0 +1,32 @@
+
+======================================================
+(A)flyway.conf 
+=====================================================
+#open flyway.con file, remove the configuration and add the below
+
+
+flyway.url=jdbc:mysql://localhost:3306/<rds_endpoint
+flyway.user=rds_username
+flyway.password=rds_password
+flyway.locations=filesystem:sql
+flyway.cleanDisabled=false
+
+
+==============================================================
+(B) Copy the sql data to be migrated to sql folder in flyway
+===============================================================
+
+=========================================================================================
+(c) connect to Bastion host command and leave the connection running in the foregroung
+========================================================================================
+ssh -i <keypair.pem username@pulic_ip -L 3306:<rds_endpoint:3306 -N
+
+
+======================================================
+(D). Open a new terminal in flyway sql folder and run the below command
+=====================================
+./flyway migrate
+
+===================================================================================
+mysql -u kings -pkings123# -h dev-rds-db.c5vncvuchjpu.us-east-1.rds.amazonaws.com
+===================================================================================
